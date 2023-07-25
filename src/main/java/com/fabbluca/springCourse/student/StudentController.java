@@ -2,6 +2,7 @@ package com.fabbluca.springCourse.student;
 
 import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -11,9 +12,11 @@ import java.util.List;
 @RequestMapping("/api/v1/students")
 public class StudentController {
 
-    private StudentService service;
+    private final StudentService service;
 
-    public StudentController(StudentService service) {
+    public StudentController(
+           @Qualifier("DBStudentService") StudentService service
+    ) {
         this.service = service;
     }
 
